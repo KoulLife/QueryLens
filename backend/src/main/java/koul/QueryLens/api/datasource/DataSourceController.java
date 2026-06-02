@@ -26,4 +26,11 @@ public class DataSourceController {
                 DataSourceResponse.from(dataSourceApplicationService.findById(id))
         );
     }
+
+    @PostMapping("/{id}/schema-sync")
+    public ApiResponse<DataSourceResponse> syncSchema(@PathVariable Long id) {
+        return ApiResponse.success(
+                DataSourceResponse.from(dataSourceApplicationService.syncSchema(id))
+        );
+    }
 }

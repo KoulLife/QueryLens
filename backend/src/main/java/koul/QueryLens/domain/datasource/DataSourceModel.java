@@ -45,4 +45,8 @@ public class DataSourceModel extends BaseEntity {
         model.connection = connection;
         return model;
     }
+
+    public void updateSchema(DataSourceSchema schema) {
+        this.schema = schema;
+    }
 }

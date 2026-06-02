@@ -10,6 +10,7 @@ public record DataSourceResult(
         Long id,
         DbType dbType,
         DataSourceConnection connection,
+        LocalDateTime schemaSyncedAt,
         LocalDateTime createdAt
 ) {
     public static DataSourceResult from(DataSourceModel model) {
@@ -17,6 +18,7 @@ public record DataSourceResult(
                 model.getId(),
                 model.getDbType(),
                 model.getConnection(),
+                model.getSchema() != null ? model.getSchema().getSyncedAt() : null,
                 model.getCreatedAt()
         );
     }

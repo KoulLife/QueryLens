@@ -10,6 +10,7 @@ public record DataSourceResponse(
         Long id,
         DbType dbType,
         DataSourceConnection connection,
+        LocalDateTime schemaSyncedAt,
         LocalDateTime createdAt
 ) {
     public static DataSourceResponse from(DataSourceResult result) {
@@ -17,6 +18,7 @@ public record DataSourceResponse(
                 result.id(),
                 result.dbType(),
                 result.connection(),
+                result.schemaSyncedAt(),
                 result.createdAt()
         );
     }

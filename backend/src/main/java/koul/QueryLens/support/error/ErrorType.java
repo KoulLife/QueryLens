@@ -23,7 +23,10 @@ public enum ErrorType {
     USER_DATA_SOURCE_NOT_FOUND(HttpStatus.NOT_FOUND, "UDS_003", "등록되지 않은 데이터소스입니다."),
 
     /** DataSource 에러 */
-    DATA_SOURCE_CONNECTION_FAILED(HttpStatus.BAD_REQUEST, "DS_001", "데이터소스 연결에 실패했습니다.");
+    DATA_SOURCE_CONNECTION_FAILED(HttpStatus.BAD_REQUEST, "DS_001", "데이터소스 연결에 실패했습니다."),
+
+    /** Conversation 에러 */
+    SQL_EXECUTION_FAILED(HttpStatus.BAD_REQUEST, "CONV_001", "SQL 실행에 실패했습니다.");
 
     private final HttpStatus status;
     private final String code;
