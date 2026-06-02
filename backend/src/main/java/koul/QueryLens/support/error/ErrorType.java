@@ -15,7 +15,15 @@ public enum ErrorType {
 
     /** User 에러 */
     INVALID_EXTERNAL_IDENTITY(HttpStatus.BAD_REQUEST, "USER_001", "유효하지 않은 외부 사용자 식별자입니다."),
-    DUPLICATE_USER(HttpStatus.CONFLICT, "USER_002", "이미 존재하는 사용자입니다.");
+    DUPLICATE_USER(HttpStatus.CONFLICT, "USER_002", "이미 존재하는 사용자입니다."),
+
+    /** UserDataSource 에러 */
+    INVALID_INPUT(HttpStatus.BAD_REQUEST, "UDS_001", "잘못된 입력값입니다."),
+    DUPLICATE_USER_DATA_SOURCE(HttpStatus.CONFLICT, "UDS_002", "이미 등록된 데이터소스입니다."),
+    USER_DATA_SOURCE_NOT_FOUND(HttpStatus.NOT_FOUND, "UDS_003", "등록되지 않은 데이터소스입니다."),
+
+    /** DataSource 에러 */
+    DATA_SOURCE_CONNECTION_FAILED(HttpStatus.BAD_REQUEST, "DS_001", "데이터소스 연결에 실패했습니다.");
 
     private final HttpStatus status;
     private final String code;
