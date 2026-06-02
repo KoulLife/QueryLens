@@ -5,6 +5,7 @@ import koul.QueryLens.support.error.ErrorType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -28,6 +29,15 @@ public class ApiControllerAdvice {
     public ResponseEntity<ApiResponse<?>> handle(CoreException e) {
         log.warn("CoreException : {}", e.getCustomMessage() != null ? e.getCustomMessage() : e.getMessage(), e);
         return failureResponse(e.getErrorType(), e.getCustomMessage());
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ApiResponse<?>> handleValidation(MethodArgumentNotValidException e) {
+        String message = e.getBindingResult().getFieldErrors().stream()
+                .findFirst()
+                .map(error -> error.getField() + ": " + error.getDefaultMessage())
+                .orElse("잘못된 요청입니다.");
+        return failureResponse(ErrorType.BAD_REQUEST, message);
     }
 
     @ExceptionHandler
