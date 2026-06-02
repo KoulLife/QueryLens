@@ -21,4 +21,21 @@ public class ConversationAttempt {
     private ConversationAttemptStatus status;
 
     private String errorMessage;
+
+    public static ConversationAttempt success(Integer attemptNo, String generatedSql) {
+        ConversationAttempt attempt = new ConversationAttempt();
+        attempt.attemptNo = attemptNo;
+        attempt.generatedSql = generatedSql;
+        attempt.status = ConversationAttemptStatus.SUCCESS;
+        return attempt;
+    }
+
+    public static ConversationAttempt failure(Integer attemptNo, String generatedSql, String errorMessage) {
+        ConversationAttempt attempt = new ConversationAttempt();
+        attempt.attemptNo = attemptNo;
+        attempt.generatedSql = generatedSql;
+        attempt.status = ConversationAttemptStatus.FAILED;
+        attempt.errorMessage = errorMessage;
+        return attempt;
+    }
 }
